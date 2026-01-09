@@ -110,33 +110,47 @@
         });
 
         // --- NEW & FIXED WordPress Fetcher (Using v1.1 API) ---
-        async function fetchWordPressPosts() {
-            // This API endpoint is specific to WordPress.com and bypasses most security blocks
-            const WP_API_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/growlinkconnect.wordpress.com/posts/?number=3'; 
+       async function fetchWordPressPosts() {
+            // We use rss2json.com as a bridge to bypass browser security blocks
+            const RSS_URL = 'https://growlinkconnect.wordpress.com/feed/';
+            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
             
             const container = document.getElementById('blog-container');
             if (!container) return;
             
             try {
-                const response = await fetch(WP_API_URL);
-                if (!response.ok) throw new Error('Failed to fetch posts');
+                const response = await fetch(API_URL);
                 const data = await response.json();
-                
-                // The v1.1 API returns an object with a 'posts' array
-                if (data.posts && data.posts.length > 0) {
+
+                if (data.status === 'ok' && data.items.length > 0) {
                     container.innerHTML = '';
                     
-                    data.posts.forEach(post => {
-                        const title = post.title; // No .rendered needed for v1.1
-                        const link = post.URL;    // Capital URL for v1.1
-                        // Clean up excerpt (remove HTML tags)
-                        const div = document.createElement("div");
-                        div.innerHTML = post.excerpt;
-                        const cleanExcerpt = div.textContent || div.innerText || "";
-                        const shortExcerpt = cleanExcerpt.substring(0, 100) + '...';
+                    // Take the first 3 posts
+                    data.items.slice(0, 3).forEach(item => {
+                        const title = item.title;
+                        const link = item.link;
                         
-                        const imageUrl = post.featured_image || '';
+                        // Clean up content to create a short excerpt
+                        // We create a temporary element to strip HTML tags safely
+                        const tempDiv = document.createElement("div");
+                        tempDiv.innerHTML = item.description || item.content;
+                        const plainText = tempDiv.textContent || tempDiv.innerText || "";
+                        const excerpt = plainText.substring(0, 100) + '...';
+                        
+                        // Smart Image Finder: 
+                        // 1. Checks 'thumbnail' field 
+                        // 2. Checks 'enclosure' (featured image)
+                        // 3. Scans the post content for the first <img> tag
+                        let imageUrl = item.thumbnail;
+                        if (!imageUrl && item.enclosure && item.enclosure.link) {
+                            imageUrl = item.enclosure.link;
+                        }
+                        if (!imageUrl) {
+                            const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+                            if (imgMatch) imageUrl = imgMatch[1];
+                        }
 
+                        // Use the found image or a fallback placeholder
                         const imageHTML = imageUrl 
                             ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                             : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -149,9 +163,13 @@
                                 <div class="p-8 flex flex-col flex-grow">
                                     <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                         <span class="text-coral">Latest</span>
+                                        <span>•</span>
+                                        <span class="text-slate-500">${new Date(item.pubDate).toLocaleDateString()}</span>
                                     </div>
-                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">${title}</h3>
-                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${shortExcerpt}</div>
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">
+                                        <a href="${link}" target="_blank">${title}</a>
+                                    </h3>
+                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${excerpt}</div>
                                     <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">
                                         Read Article <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
                                     </a>
@@ -160,10 +178,12 @@
                         `;
                         container.innerHTML += articleHTML;
                     });
+                    
+                    // Re-initialize icons for the new content
                     lucide.createIcons();
                 }
             } catch (error) {
-                console.error('Error fetching blogs:', error);
+                console.error('Error fetching blogs via RSS:', error);
             }
         }
 
@@ -242,3 +262,4 @@
             fetchGoogleReviews();
         });
     </script>
+
