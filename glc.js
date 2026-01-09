@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- WordPress Blog Fetcher Logic ---
-// --- WordPress Blog Fetcher Logic ---
 async function fetchWordPressPosts() {
     // URL for your WordPress site
     const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
@@ -302,6 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWordPressPosts();
     fetchGoogleReviews();
 });
+
 
 
 
