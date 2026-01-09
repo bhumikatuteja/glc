@@ -149,14 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- WordPress Blog Fetcher Logic ---
 async function fetchWordPressPosts() {
-    // URL for your WordPress site
-    const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
+    // ✅ The correct API URL for your site
+    const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/growlinkconnect.wordpress.com/posts?_embed&per_page=3';
     
     const container = document.getElementById('blog-container');
     if (!container) return;
     
     try {
-        console.log("Fetching blogs from:", WP_API_URL); // Added for debugging
+        console.log("Fetching blogs from:", WP_API_URL);
 
         const response = await fetch(WP_API_URL);
         
@@ -171,13 +171,16 @@ async function fetchWordPressPosts() {
             posts.forEach(post => {
                 const title = post.title.rendered;
                 const link = post.link;
+                // Create a short excerpt (first 100 characters)
                 const excerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
                 
+                // Try to get featured image
                 let imageUrl = '';
                 if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
                     imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
                 }
 
+                // Use the fetched image or a fallback placeholder if missing
                 const imageHTML = imageUrl 
                     ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                     : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -193,21 +196,23 @@ async function fetchWordPressPosts() {
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">${title}</h3>
                             <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${excerpt}</div>
-                            <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">Read Article</a>
+                            <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">
+                                Read Article <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                            </a>
                         </div>
                     </article>
                 `;
                 container.innerHTML += articleHTML;
             });
+            // Re-initialize icons for new content
             lucide.createIcons();
         } else {
-            console.log("No posts found on the blog.");
+            console.log("No posts found.");
         }
     } catch (error) {
         console.error('Error fetching blogs:', error);
     }
 }
-
 // --- Google Reviews Fetcher Logic ---
 async function fetchGoogleReviews() {
     const container = document.getElementById('reviews-container');
@@ -301,6 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWordPressPosts();
     fetchGoogleReviews();
 });
+
 
 
 
