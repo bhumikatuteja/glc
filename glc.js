@@ -109,42 +109,47 @@
             }
         });
 
-        // --- FINAL FIXED BLOG FETCHER ---
+        // --- FINAL BULLETPROOF BLOG FETCHER (RSS METHOD) ---
         async function fetchWordPressPosts() {
-            // This URL is specific for WordPress.com sites and is Public Access
-            const SITE_DOMAIN = 'growlinkconnect.wordpress.com';
-            const API_URL = `https://public-api.wordpress.com/rest/v1.1/sites/${SITE_DOMAIN}/posts/?number=3`;
+            // We use rss2json.com to bypass browser security restrictions
+            const RSS_URL = 'https://growlinkconnect.wordpress.com/feed/';
+            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
             
             const container = document.getElementById('blog-container');
             if (!container) return;
-
-            console.log("Attempting to fetch blogs from:", API_URL);
-
+            
             try {
                 const response = await fetch(API_URL);
-                if (!response.ok) throw new Error(`API Error: ${response.status}`);
-                
                 const data = await response.json();
-                console.log("Blog data received:", data);
 
-                if (data.posts && data.posts.length > 0) {
-                    container.innerHTML = ''; // Clear fallback content
+                if (data.status === 'ok' && data.items.length > 0) {
+                    container.innerHTML = '';
                     
-                    data.posts.forEach(post => {
-                        // Title
-                        const title = post.title;
-                        // Link
-                        const link = post.URL;
-                        // Excerpt (Create a temporary div to strip HTML tags safely)
+                    // Take the first 3 posts
+                    data.items.slice(0, 3).forEach(item => {
+                        const title = item.title;
+                        const link = item.link;
+                        
+                        // Create Excerpt (Strip HTML tags)
                         const tempDiv = document.createElement("div");
-                        tempDiv.innerHTML = post.excerpt;
+                        tempDiv.innerHTML = item.description || item.content;
                         const plainText = tempDiv.textContent || tempDiv.innerText || "";
                         const excerpt = plainText.substring(0, 100) + '...';
                         
-                        // Image (WordPress.com v1.1 usually returns featured_image as a URL string)
-                        const imageUrl = post.featured_image;
+                        // Smart Image Finder: 
+                        // 1. Checks 'thumbnail'
+                        // 2. Checks 'enclosure'
+                        // 3. Scans content for <img> tag
+                        let imageUrl = item.thumbnail;
+                        if (!imageUrl && item.enclosure && item.enclosure.link) {
+                            imageUrl = item.enclosure.link;
+                        }
+                        if (!imageUrl) {
+                            const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
+                            if (imgMatch) imageUrl = imgMatch[1];
+                        }
 
-                        // HTML Template
+                        // Use the found image or a fallback placeholder
                         const imageHTML = imageUrl 
                             ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                             : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -158,7 +163,7 @@
                                     <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                         <span class="text-coral">Latest</span>
                                         <span>•</span>
-                                        <span class="text-slate-500">${new Date(post.date).toLocaleDateString()}</span>
+                                        <span class="text-slate-500">${new Date(item.pubDate).toLocaleDateString()}</span>
                                     </div>
                                     <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">
                                         <a href="${link}" target="_blank">${title}</a>
@@ -173,17 +178,14 @@
                         container.innerHTML += articleHTML;
                     });
                     
-                    // Refresh icons
                     lucide.createIcons();
-                } else {
-                    console.log("No posts found in the response.");
                 }
             } catch (error) {
-                console.error("Blog fetch failed:", error);
+                console.error('RSS Fetch Error:', error);
             }
         }
 
-        // --- Google Reviews Fetcher (Mock Data for Demo) ---
+        // --- Google Reviews Fetcher (Mock Data) ---
         async function fetchGoogleReviews() {
             const container = document.getElementById('reviews-container');
             if (!container) return;
