@@ -146,15 +146,12 @@
 </head>
 <body class="bg-slate-50 dark:bg-[#050912] text-slate-900 dark:text-slate-100 font-sans antialiased selection:bg-linkedin selection:text-white">
 
-    <!-- Noise Overlay -->
     <div class="bg-noise"></div>
 
-    <!-- Navigation -->
     <nav id="main-nav" class="flex items-center">
         <div class="nav-inner max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-12">
             
-            <!-- Brand -->
-<div id="nav-brand" class="flex items-center gap-3 shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+            <div id="nav-brand" class="flex items-center gap-3 shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
                 
                 <img src="glc.png" 
                      alt="GLC Logo" 
@@ -171,7 +168,6 @@
                 </span>
             </div>
             
-            <!-- Links (Desktop) -->
             <div id="nav-links" class="hidden lg:flex items-center gap-8 font-medium text-slate-500 dark:text-slate-400 text-sm tracking-wide">
                 <a href="#about" class="hover:text-linkedin transition-colors">About</a>
                 <a href="#services" class="hover:text-linkedin transition-colors">Services</a>
@@ -181,28 +177,24 @@
                 <a href="#blogs" class="hover:text-linkedin transition-colors">Blogs</a>
             </div>
 
-            <!-- Actions -->
             <div class="flex items-center gap-2 lg:gap-4">
                 <button id="theme-toggle" class="p-2 rounded-full text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors">
                     <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
                     <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
                 </button>
                 
-                <!-- CTA Button - Always Visible -->
                 <div id="nav-cta">
                     <button onclick="openModal()" class="bg-slate-900 dark:bg-white hover:bg-linkedin dark:hover:bg-linkedin text-white dark:text-slate-900 hover:text-white px-4 lg:px-6 py-2 lg:py-2.5 rounded-full font-bold text-[10px] lg:text-xs uppercase tracking-widest transition-all hover:-translate-y-0.5 shadow-lg shadow-blue-900/10 dark:shadow-none whitespace-nowrap">
                         Consult Now
                     </button>
                 </div>
 
-                <!-- Mobile Menu Toggle -->
                 <button class="lg:hidden p-2 text-slate-900 dark:text-white" id="menu-btn">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Mobile Dropdown -->
         <div id="mobile-menu" class="hidden absolute top-[80px] left-0 w-full bg-white dark:bg-navy border-b border-slate-100 dark:border-slate-800 p-6 flex flex-col space-y-6 shadow-xl lg:hidden z-40 h-screen">
             <a href="#about" class="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-white/5 pb-4">About</a>
             <a href="#services" class="text-xl font-bold text-slate-900 dark:text-white border-b border-slate-100 dark:border-white/5 pb-4">Services</a>
@@ -213,7 +205,6 @@
         </div>
     </nav>
 
-    <!-- Consultation Modal -->
     <div id="consult-modal" class="modal-backdrop fixed inset-0 z-[100] flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-xl overflow-y-auto py-10">
         <div class="modal-content bg-white dark:bg-[#0B1120] w-full max-w-3xl rounded-3xl shadow-2xl border border-slate-100 dark:border-white/10 my-auto">
             <div class="flex justify-between items-center p-6 lg:p-8 border-b border-slate-100 dark:border-white/5">
@@ -268,10 +259,8 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-slate-50 dark:bg-[#050912]">
         <div class="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
-        <!-- Soft Glows -->
         <div class="absolute top-[-10%] right-[-5%] w-[300px] lg:w-[600px] h-[300px] lg:h-[600px] bg-blue-500/10 rounded-full blur-[80px] lg:blur-[120px] pointer-events-none"></div>
         <div class="absolute bottom-[-10%] left-[-10%] w-[300px] lg:w-[500px] h-[300px] lg:h-[500px] bg-rose-500/5 rounded-full blur-[80px] lg:blur-[120px] pointer-events-none"></div>
         
@@ -323,7 +312,6 @@
                 </div>
                 
                 <div class="hidden lg:block relative perspective-1000">
-                    <!-- Glass Card Visualization -->
                     <div class="relative bg-white/50 dark:bg-white/5 p-8 rounded-[2rem] border border-white/60 dark:border-white/10 shadow-glass backdrop-blur-xl animate-float">
                         <div class="flex items-center justify-between mb-8">
                             <div class="flex items-center gap-4">
@@ -375,7 +363,6 @@
         </div>
     </section>
 
-    <!-- Mission Section -->
     <section id="about" class="section-padding bg-white dark:bg-navy">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-24 items-start">
@@ -426,7 +413,6 @@
         </div>
     </section>
 
-    <!-- Services Grid -->
     <section id="services" class="section-padding bg-slate-50 dark:bg-[#080c17] border-y border-slate-200 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16 lg:mb-24 max-w-2xl mx-auto">
@@ -436,7 +422,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Service Cards -->
                 <div class="service-card p-8 lg:p-10 bg-white dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/5 hover:border-linkedin/50 transition-all group hover:shadow-premium">
                     <div class="w-14 h-14 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
                         <i data-lucide="layers" class="w-7 h-7 text-linkedin"></i>
@@ -488,7 +473,6 @@
         </div>
     </section>
 
-    <!-- INTERACTIVE PROCESS SECTION -->
     <section id="process" class="bg-white dark:bg-navy relative overflow-hidden section-padding">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="mb-16 lg:mb-24 text-center lg:text-left">
@@ -500,11 +484,9 @@
 
             <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
                 
-                <!-- Left: Illustrative Diagram (Sticky) -->
                 <div class="lg:w-5/12 relative hidden lg:block">
                     <div class="sticky top-32">
                         <div class="relative w-full aspect-square max-w-[500px] mx-auto">
-                            <!-- Central Hub -->
                             <div class="absolute inset-0 m-auto w-40 h-40 bg-[#0B1120] rounded-full border-4 border-[#1a2336] flex items-center justify-center shadow-2xl z-20">
                                 <div class="absolute inset-0 rounded-full border border-white/5 animate-[spin_10s_linear_infinite]"></div>
                                 <div class="absolute inset-0 rounded-full border-t-2 border-coral shadow-[0_0_20px_rgba(244,63,94,0.4)] animate-[spin_3s_linear_infinite]"></div>
@@ -513,34 +495,27 @@
                                 </div>
                             </div>
                             
-                            <!-- Orbiting Nodes -->
-                            <!-- Node 1 -->
                             <div class="absolute top-[10%] left-[50%] -translate-x-1/2 w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 0s;">
                                 <i data-lucide="search" class="w-6 h-6 text-linkedin mb-2"></i>
                                 <span class="text-[10px] font-bold text-white uppercase tracking-widest">Discovery</span>
                             </div>
-                            <!-- Node 2 -->
                             <div class="absolute top-[35%] right-0 w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 1s;">
                                 <i data-lucide="map" class="w-6 h-6 text-linkedin mb-2"></i>
                                 <span class="text-[10px] font-bold text-white uppercase tracking-widest">Strategy</span>
                             </div>
-                            <!-- Node 3 -->
                             <div class="absolute bottom-[15%] right-[10%] w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 2s;">
                                 <i data-lucide="settings" class="w-6 h-6 text-linkedin mb-2"></i>
                                 <span class="text-[10px] font-bold text-white uppercase tracking-widest">Setup</span>
                             </div>
-                            <!-- Node 4 -->
                             <div class="absolute bottom-[15%] left-[10%] w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 3s;">
                                 <i data-lucide="zap" class="w-6 h-6 text-linkedin mb-2"></i>
                                 <span class="text-[10px] font-bold text-white uppercase tracking-widest">Execution</span>
                             </div>
-                             <!-- Node 5 -->
-                            <div class="absolute top-[35%] left-0 w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 4s;">
+                             <div class="absolute top-[35%] left-0 w-24 h-24 bg-[#0B1120] rounded-2xl border border-white/10 flex flex-col items-center justify-center shadow-lg z-10 animate-float" style="animation-delay: 4s;">
                                 <i data-lucide="bar-chart-2" class="w-6 h-6 text-linkedin mb-2"></i>
                                 <span class="text-[10px] font-bold text-white uppercase tracking-widest">Monitor</span>
                             </div>
 
-                            <!-- Connecting Lines (SVG Overlay) -->
                             <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-20">
                                 <circle cx="50%" cy="50%" r="35%" fill="none" stroke="currentColor" stroke-width="1" class="text-linkedin" stroke-dasharray="4 4" />
                             </svg>
@@ -548,10 +523,8 @@
                     </div>
                 </div>
 
-                <!-- Right: Grid Based Steps -->
                 <div class="lg:w-7/12 w-full">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Step 1 -->
                         <div class="step-text p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="1">
                             <div class="flex justify-between items-start mb-6">
                                 <span class="text-4xl font-black text-slate-200 dark:text-white/10 font-display">01</span>
@@ -563,7 +536,6 @@
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light">We start by understanding your goals. We analyze your brand, target audience parameters, and identify your unique professional voice to build a solid foundation.</p>
                         </div>
 
-                        <!-- Step 2 -->
                         <div class="step-text p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="2">
                             <div class="flex justify-between items-start mb-6">
                                 <span class="text-4xl font-black text-slate-200 dark:text-white/10 font-display">02</span>
@@ -575,7 +547,6 @@
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light">Precise targeting. We select the optimal growth vector, content mix, and outreach cadence tailored specifically to your industry niche.</p>
                         </div>
 
-                        <!-- Step 3 -->
                         <div class="step-text p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="3">
                             <div class="flex justify-between items-start mb-6">
                                 <span class="text-4xl font-black text-slate-200 dark:text-white/10 font-display">03</span>
@@ -587,7 +558,6 @@
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light">Optimization engaged. We architect your profile, design high-converting banners, and polish your branding assets for maximum credibility.</p>
                         </div>
 
-                        <!-- Step 4 -->
                         <div class="step-text p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="4">
                             <div class="flex justify-between items-start mb-6">
                                 <span class="text-4xl font-black text-slate-200 dark:text-white/10 font-display">04</span>
@@ -599,8 +569,7 @@
                             <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light">Active deployment. We handle connections, content, and engagement daily. We cut through the noise so you can focus on real business opportunities.</p>
                         </div>
 
-                         <!-- Step 5 -->
-                        <div class="step-text md:col-span-2 p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="5">
+                         <div class="step-text md:col-span-2 p-6 lg:p-8 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 hover:border-linkedin/30 transition-all group" data-step="5">
                             <div class="flex flex-col md:flex-row md:items-center gap-6">
                                 <div class="flex-shrink-0">
                                      <div class="flex justify-between items-start w-full md:w-auto md:block">
@@ -608,7 +577,7 @@
                                          <div class="w-10 h-10 rounded-full bg-white dark:bg-white/10 flex items-center justify-center text-linkedin md:hidden">
                                             <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
                                         </div>
-                                    </div>
+                                     </div>
                                 </div>
                                 <div>
                                     <div class="hidden md:flex items-center gap-4 mb-3">
@@ -624,12 +593,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
-    <!-- Pricing Section -->
     <section id="plans" class="section-padding bg-slate-50 dark:bg-[#080c17] border-t border-slate-200 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="text-center mb-16 lg:mb-24">
@@ -638,7 +606,6 @@
             </div>
 
             <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-6">
-                <!-- Gold -->
                 <div class="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-200 dark:border-white/5 flex flex-col hover:border-linkedin/30 transition-all group hover:shadow-premium">
                     <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 font-display">Gold Plan</h4>
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">Connection Building Only</p>
@@ -653,7 +620,6 @@
                     <button onclick="openModal()" class="w-full py-3.5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-50 dark:hover:bg-white/10 transition-all">Select Gold</button>
                 </div>
 
-                <!-- Gold Plus -->
                 <div class="bg-white dark:bg-[#0B1120] p-8 rounded-[2rem] border-2 border-linkedin flex flex-col relative shadow-2xl shadow-blue-900/10 transform lg:-translate-y-4">
                     <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-linkedin text-white text-[10px] font-black px-4 py-1.5 uppercase rounded-full tracking-widest shadow-lg">Most Popular</div>
                     <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 font-display">Gold Plus</h4>
@@ -670,7 +636,6 @@
                     <button onclick="openModal()" class="w-full py-3.5 bg-linkedin text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-linkedin/20">Get Started</button>
                 </div>
 
-                <!-- Platinum -->
                 <div class="bg-navy p-8 rounded-[2rem] flex flex-col text-white shadow-2xl relative overflow-hidden ring-1 ring-white/10">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-linkedin/20 rounded-full blur-3xl"></div>
                     <h4 class="text-xl font-bold mb-2 relative z-10 font-display">Platinum</h4>
@@ -685,7 +650,6 @@
                     <button onclick="openModal()" class="w-full py-3.5 bg-white text-navy font-bold text-xs uppercase tracking-widest rounded-xl hover:bg-slate-200 transition-all relative z-10">Enquire</button>
                 </div>
 
-                <!-- Power Booster -->
                 <div class="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-200 dark:border-white/5 flex flex-col hover:border-linkedin/30 transition-all group hover:shadow-premium">
                     <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2 font-display">Power Booster</h4>
                     <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-8">High-Impact Scale</p>
@@ -707,16 +671,13 @@
         </div>
     </section>
 
-    <!-- Testimonials (Updated for Dynamic Google Reviews) -->
     <section id="reviews" class="section-padding bg-white dark:bg-slate-950">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
              <div class="text-center mb-16 lg:mb-24">
                 <span class="text-coral font-bold text-xs uppercase tracking-[0.4em] mb-4 block">Feedback</span>
                 <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-display">Client Reviews</h2>
             </div>
-            <!-- Container for dynamic reviews -->
             <div id="reviews-container" class="grid md:grid-cols-3 gap-8 lg:gap-12">
-                <!-- Loading State / Fallback -->
                 <div class="col-span-full text-center text-slate-500 animate-pulse">
                     Loading authentic reviews...
                 </div>
@@ -724,7 +685,6 @@
         </div>
     </section>
 
-    <!-- New Blogs Section -->
     <section id="blogs" class="section-padding bg-slate-50 dark:bg-[#080c17] border-t border-slate-200 dark:border-white/5">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 lg:mb-16 gap-6">
@@ -732,75 +692,18 @@
                     <span class="text-coral font-bold text-xs uppercase tracking-[0.4em] mb-4 block">Latest Insights</span>
                     <h2 class="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white font-display">From The Blog</h2>
                 </div>
-                <a href="#" class="group flex items-center gap-2 text-sm font-bold text-linkedin hover:text-blue-700 transition-colors">
+                <a href="https://growlinkconnect.wordpress.com" target="_blank" class="group flex items-center gap-2 text-sm font-bold text-linkedin hover:text-blue-700 transition-colors">
                     View All Articles
                     <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
                 </a>
             </div>
 
-            <!-- Blog Grid - Populated by JS -->
             <div id="blog-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Fallback Static Content 1 -->
-                <article class="bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-100 dark:border-white/5 hover:shadow-xl transition-all hover:-translate-y-1 group h-full flex flex-col">
-                    <div class="h-48 bg-slate-200 dark:bg-white/10 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-400">
-                            <i data-lucide="image" class="w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            <span class="text-coral">Strategy</span>
-                            <span>•</span>
-                            <span>5 Min Read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors">How to Optimize Your LinkedIn Profile for 2025</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">Learn the key profile elements that are ranking highest in the current LinkedIn algorithm.</p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">Read Article</a>
-                    </div>
-                </article>
-
-                <!-- Fallback Static Content 2 -->
-                <article class="bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-100 dark:border-white/5 hover:shadow-xl transition-all hover:-translate-y-1 group h-full flex flex-col">
-                    <div class="h-48 bg-slate-200 dark:bg-white/10 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-400">
-                            <i data-lucide="image" class="w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            <span class="text-coral">Growth</span>
-                            <span>•</span>
-                            <span>4 Min Read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors">The Power of Consistency: 30 Days of Posting</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">A case study on how daily engagement transformed a quiet profile into a lead magnet.</p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">Read Article</a>
-                    </div>
-                </article>
-
-                <!-- Fallback Static Content 3 -->
-                <article class="bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-100 dark:border-white/5 hover:shadow-xl transition-all hover:-translate-y-1 group h-full flex flex-col">
-                    <div class="h-48 bg-slate-200 dark:bg-white/10 relative overflow-hidden">
-                        <div class="absolute inset-0 flex items-center justify-center text-slate-400">
-                            <i data-lucide="image" class="w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="p-8 flex flex-col flex-grow">
-                        <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
-                            <span class="text-coral">Networking</span>
-                            <span>•</span>
-                            <span>6 Min Read</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors">Building Genuine Connections in a Digital Age</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow">Why personalized outreach beats automation every single time.</p>
-                        <a href="#" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">Read Article</a>
-                    </div>
-                </article>
+                <div class="col-span-full text-center text-slate-500">Loading latest posts...</div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact" class="bg-navy text-white pt-24 pb-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-20 mb-20 border-b border-white/10 pb-20">
@@ -855,129 +758,148 @@
     </footer>
 
     <script>
+        // Initialize Icons
         lucide.createIcons();
 
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
         const htmlElement = document.documentElement;
-        themeToggle.addEventListener('click', () => {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
-                htmlElement.classList.add('light');
-            } else {
-                htmlElement.classList.remove('light');
-                htmlElement.classList.add('dark');
-            }
-        });
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                if (htmlElement.classList.contains('dark')) {
+                    htmlElement.classList.remove('dark');
+                    htmlElement.classList.add('light');
+                } else {
+                    htmlElement.classList.remove('light');
+                    htmlElement.classList.add('dark');
+                }
+            });
+        }
 
         // Mobile Menu
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
             });
-        });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
 
         // Scroll Header Logic
         const nav = document.getElementById('main-nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+            if (nav) {
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
             }
         });
 
         // Modal Logic
         const modal = document.getElementById('consult-modal');
-        function openModal() {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+        window.openModal = function() {
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-        });
+        }
+        window.closeModal = function() {
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+        if (modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+        }
 
         // Gmail Logic
-        function sendToGmail(event) {
+        window.sendToGmail = function(event) {
             event.preventDefault();
-            
-            // Handle both main form and footer form IDs
             const isFooter = event.target.closest('footer');
             const prefix = isFooter ? 'footer-' : 'contact-';
-            
             const name = document.getElementById(prefix + 'name').value;
             const email = document.getElementById(prefix + 'email').value;
             const linkedin = document.getElementById(prefix + 'linkedin').value;
             const message = isFooter ? "Interested in plans" : document.getElementById('contact-message').value;
-            
             const subject = `GLC Consultation Request: ${name}`;
             const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ALinkedIn: ${linkedin}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-            
             window.location.href = `mailto:info@growlinkconnect.com?subject=${subject}&body=${body}`;
             setTimeout(closeModal, 1000);
         }
 
-        // Interactive Process Animation - UPDATED to handle Card Styling
-        const stepTexts = document.querySelectorAll('.step-text');
-        
-        if(stepTexts.length > 0) {
-            const stepObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        stepTexts.forEach(t => t.classList.remove('active'));
-                        entry.target.classList.add('active');
-                    }
-                });
-            }, { root: null, rootMargin: '-30% 0px -30% 0px', threshold: 0.2 });
+        // Interactive Process Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const stepTexts = document.querySelectorAll('.step-text');
+            if (stepTexts.length > 0) {
+                const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+                if (isDesktop) {
+                    stepTexts.forEach(step => {
+                        step.addEventListener('mouseenter', () => {
+                            stepTexts.forEach(t => t.classList.remove('active'));
+                            step.classList.add('active');
+                        });
+                        step.addEventListener('mouseleave', () => {
+                            stepTexts.forEach(t => t.classList.remove('active'));
+                        });
+                    });
+                } else {
+                    const stepObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                stepTexts.forEach(t => t.classList.remove('active'));
+                                entry.target.classList.add('active');
+                            }
+                        });
+                    }, { root: null, rootMargin: '-40% 0px -40% 0px', threshold: 0.1 });
+                    stepTexts.forEach(step => stepObserver.observe(step));
+                }
+            }
+        });
 
-            stepTexts.forEach(step => stepObserver.observe(step));
-        }
-
-        // --- WordPress Blog Fetcher Logic ---
+        // --- WordPress.com v1.1 API Fetcher ---
         async function fetchWordPressPosts() {
-            // REPLACE THIS URL with your actual WordPress site URL
-            // Example: 'https://your-site.com/wp-json/wp/v2/posts?_embed&per_page=3'
-            const WP_API_URL = 'https://your-wordpress-site.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
+            const API_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/growlinkconnect.wordpress.com/posts/?number=3';
             
             const container = document.getElementById('blog-container');
-            
+            if (!container) return;
+
             try {
-                // If the URL is still the placeholder, we don't try to fetch to avoid errors
-                if(WP_API_URL.includes('your-wordpress-site.com')) {
-                    console.log('WordPress API URL not configured. Showing static content.');
-                    return; 
-                }
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
 
-                const response = await fetch(WP_API_URL);
-                if (!response.ok) throw new Error('Failed to fetch posts');
-                const posts = await response.json();
-
-                // Clear static content only if we successfully fetched posts
-                if (posts.length > 0) {
-                    container.innerHTML = '';
+                if (data.posts && data.posts.length > 0) {
+                    container.innerHTML = ''; // Clear fallback content
                     
-                    posts.forEach(post => {
-                        const title = post.title.rendered;
-                        const link = post.link;
-                        const excerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+                    data.posts.forEach(post => {
+                        // Data Mapping for WordPress.com v1.1
+                        const title = post.title; 
+                        const link = post.URL;
                         
-                        // Try to get featured image, fallback to placeholder color
-                        let imageUrl = '';
-                        if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
-                            imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
-                        }
-
+                        // Clean up excerpt (remove HTML tags)
+                        const div = document.createElement("div");
+                        div.innerHTML = post.excerpt;
+                        const cleanExcerpt = div.textContent || div.innerText || "";
+                        const shortExcerpt = cleanExcerpt.substring(0, 100) + '...';
+                        
+                        // Handle Featured Image
+                        // v1.1 returns featured_image as a URL string or empty string
+                        let imageUrl = post.featured_image;
+                        
+                        // HTML Template
                         const imageHTML = imageUrl 
                             ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                             : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -990,147 +912,100 @@
                                 <div class="p-8 flex flex-col flex-grow">
                                     <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                         <span class="text-coral">Latest</span>
+                                        <span>•</span>
+                                        <span class="text-slate-500">${new Date(post.date).toLocaleDateString()}</span>
                                     </div>
-                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">${title}</h3>
-                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${excerpt}</div>
-                                    <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">Read Article</a>
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">
+                                        <a href="${link}" target="_blank">${title}</a>
+                                    </h3>
+                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${shortExcerpt}</div>
+                                    <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">
+                                        Read Article <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                                    </a>
                                 </div>
                             </article>
                         `;
                         container.innerHTML += articleHTML;
                     });
                     
-                    // Re-initialize icons for new content
                     lucide.createIcons();
                 }
             } catch (error) {
-                console.error('Error fetching blogs:', error);
-                // We leave the static content as fallback
+                console.error("Blog fetch failed. Keeping static content.", error);
             }
         }
 
-        // Initialize Blog Fetcher
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchWordPressPosts();
-            fetchGoogleReviews();
-        });
-
-        // --- Google Reviews Fetcher Logic ---
+        // --- Google Reviews Fetcher (Mock Data) ---
         async function fetchGoogleReviews() {
             const container = document.getElementById('reviews-container');
+            if (!container) return;
             
-            // CONFIGURATION: Replace with your actual Google Places API Key and Place ID
-            // NOTE: For client-side use, you typically need a proxy server to avoid CORS issues and protect your API Key.
-            const GOOGLE_API_KEY = ''; // Leave empty to use mock data for demo
-            const PLACE_ID = '';       // Leave empty to use mock data for demo
-            
-            // This URL requires a proxy in production environment to handle CORS
-            const GOOGLE_API_URL = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${PLACE_ID}&fields=reviews&key=${GOOGLE_API_KEY}`;
-
-            // Mock Data to simulate authentic Google Reviews (used if API key is missing or fetch fails)
             const mockReviews = [
                 {
                     author_name: "Sarah Jenkins",
                     profile_photo_url: "https://randomuser.me/api/portraits/women/44.jpg",
                     rating: 5,
                     relative_time_description: "2 weeks ago",
-                    text: "Grow Link Connect transformed my LinkedIn presence. I went from zero leads to booking 3 calls a week. Highly authentic strategies that actually work.",
-                    author_url: "#"
+                    text: "Grow Link Connect transformed my LinkedIn presence. I went from zero leads to booking 3 calls a week. Highly authentic strategies that actually work."
                 },
                 {
                     author_name: "David Chen",
                     profile_photo_url: "https://randomuser.me/api/portraits/men/32.jpg",
                     rating: 5,
                     relative_time_description: "a month ago",
-                    text: "Professional, consistent, and strategic. They understood my niche perfectly and helped me position myself as a thought leader.",
-                    author_url: "#"
+                    text: "Professional, consistent, and strategic. They understood my niche perfectly and helped me position myself as a thought leader."
                 },
                 {
                     author_name: "Elena Rodriguez",
                     profile_photo_url: "https://randomuser.me/api/portraits/women/68.jpg",
                     rating: 5,
                     relative_time_description: "3 months ago",
-                    text: "The best investment for my personal brand. Their protocol is rigorous but the results speak for themselves. Truly expert service.",
-                    author_url: "#"
+                    text: "The best investment for my personal brand. Their protocol is rigorous but the results speak for themselves. Truly expert service."
                 }
             ];
 
-            let reviewsToDisplay = [];
-
-            try {
-                if (GOOGLE_API_KEY && PLACE_ID) {
-                    const response = await fetch(GOOGLE_API_URL);
-                    if (!response.ok) throw new Error('Failed to fetch Google reviews');
-                    const data = await response.json();
-                    if (data.result && data.result.reviews) {
-                        reviewsToDisplay = data.result.reviews;
-                    }
-                } else {
-                    console.log("Using mock Google Reviews data (Configure API Key to fetch live)");
-                    reviewsToDisplay = mockReviews;
-                }
-            } catch (error) {
-                console.error("Error fetching Google Reviews:", error);
-                reviewsToDisplay = mockReviews; // Fallback to mock data on error
-            }
-
             // Render Reviews
-            if (reviewsToDisplay.length > 0) {
-                container.innerHTML = ''; // Clear loading state
-                
-                reviewsToDisplay.forEach(review => {
-                    // Generate Star Rating HTML
-                    let starsHtml = '';
-                    for (let i = 0; i < 5; i++) {
-                        if (i < review.rating) {
-                            starsHtml += `<i data-lucide="star" class="w-4 h-4 fill-current text-[#FBBC05]"></i>`; // Google Yellow
-                        } else {
-                            starsHtml += `<i data-lucide="star" class="w-4 h-4 text-slate-300"></i>`;
-                        }
+            container.innerHTML = '';
+            mockReviews.forEach(review => {
+                let starsHtml = '';
+                for (let i = 0; i < 5; i++) {
+                    if (i < review.rating) {
+                        starsHtml += `<i data-lucide="star" class="w-4 h-4 fill-current text-[#FBBC05]"></i>`;
+                    } else {
+                        starsHtml += `<i data-lucide="star" class="w-4 h-4 text-slate-300"></i>`;
                     }
+                }
 
-                    const reviewHTML = `
-                        <div class="p-8 bg-slate-50 dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/5 flex flex-col h-full hover:shadow-lg transition-shadow">
-                            <div class="flex justify-between items-start mb-6">
-                                <div class="flex gap-1">
-                                    ${starsHtml}
-                                </div>
-                                <div class="w-6 h-6">
-                                    <!-- Google G Logo SVG -->
-                                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                                </div>
+                const reviewHTML = `
+                    <div class="p-8 bg-slate-50 dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/5 flex flex-col h-full hover:shadow-lg transition-shadow">
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="flex gap-1">
+                                ${starsHtml}
                             </div>
-                            
-                            <p class="text-slate-700 dark:text-slate-300 italic leading-relaxed mb-6 text-sm flex-grow line-clamp-4">"${review.text}"</p>
-                            
-                            <div class="flex items-center gap-3 mt-auto">
-                                <img src="${review.profile_photo_url}" alt="${review.author_name}" class="w-10 h-10 rounded-full object-cover bg-slate-200" onerror="this.src='https://ui-avatars.com/api/?name=${review.author_name}&background=random'">
-                                <div>
-                                    <p class="text-xs font-bold text-slate-900 dark:text-white uppercase">${review.author_name}</p>
-                                    <p class="text-[10px] text-slate-500">${review.relative_time_description}</p>
-                                </div>
+                            <div class="w-6 h-6">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
                             </div>
                         </div>
-                    `;
-                    container.innerHTML += reviewHTML;
-                });
-                
-                // Re-initialize Lucide icons for the stars
-                lucide.createIcons();
-            }
+                        <p class="text-slate-700 dark:text-slate-300 italic leading-relaxed mb-6 text-sm flex-grow line-clamp-4">"${review.text}"</p>
+                        <div class="flex items-center gap-3 mt-auto">
+                            <img src="${review.profile_photo_url}" alt="${review.author_name}" class="w-10 h-10 rounded-full object-cover bg-slate-200" onerror="this.src='https://ui-avatars.com/api/?name=${review.author_name}&background=random'">
+                            <div>
+                                <p class="text-xs font-bold text-slate-900 dark:text-white uppercase">${review.author_name}</p>
+                                <p class="text-[10px] text-slate-500">${review.relative_time_description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += reviewHTML;
+            });
+            lucide.createIcons();
         }
 
+        // Initialize Fetchers on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchWordPressPosts();
+            fetchGoogleReviews();
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
