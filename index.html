@@ -154,20 +154,21 @@
         <div class="nav-inner max-w-7xl mx-auto w-full flex justify-between items-center px-6 lg:px-12">
             
             <!-- Brand -->
-<div id="nav-brand" class="flex items-center gap-2 lg:gap-3 shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+<div id="nav-brand" class="flex items-center gap-3 shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
                 
                 <img src="glc.png" 
-                     alt="Grow Link Connect" 
-                     class="h-12 md:h-14 lg:h-16 w-auto object-contain"
-                     onerror="this.style.display='none'; document.getElementById('logo-fallback').classList.remove('hidden'); document.getElementById('logo-fallback').classList.add('flex');"
+                     alt="GLC Logo" 
+                     class="h-8 lg:h-10 w-auto object-contain"
+                     onerror="this.style.display='none'; document.getElementById('backup-icon').classList.remove('hidden'); document.getElementById('backup-icon').classList.add('flex');"
                 >
 
-                <div id="logo-fallback" class="hidden items-center gap-2 lg:gap-3">
-                    <div class="w-8 h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-linkedin to-blue-700 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/30">
-                        <span class="text-white font-bold text-lg">in</span>
-                    </div>
-                    <span class="text-base lg:text-lg font-bold text-slate-900 dark:text-white tracking-tight font-display whitespace-nowrap">Grow Link Connect</span>
+                <div id="backup-icon" class="hidden w-8 h-8 lg:w-9 lg:h-9 bg-gradient-to-br from-linkedin to-blue-700 rounded-lg items-center justify-center shadow-lg shadow-blue-500/30">
+                    <span class="text-white font-bold text-lg">in</span>
                 </div>
+
+                <span class="text-base lg:text-lg font-bold text-slate-900 dark:text-white tracking-tight font-display whitespace-nowrap">
+                    Grow Link Connect
+                </span>
             </div>
             
             <!-- Links (Desktop) -->
@@ -1122,6 +1123,7 @@
     </script>
 </body>
 </html>
+
 
 
 
