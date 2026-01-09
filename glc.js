@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- WordPress Blog Fetcher Logic ---
 async function fetchWordPressPosts() {
-    const WP_API_URL = 'https://your-wordpress-site.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
+const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
     const container = document.getElementById('blog-container');
     if (!container) return;
     
     try {
-        if(WP_API_URL.includes('your-wordpress-site.com')) {
+        if(WP_API_URL.includes('growlinkconnect.wordpress.com')) {
             console.log('WordPress API URL not configured. Showing static content.');
             return; 
         }
@@ -294,3 +294,4 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWordPressPosts();
     fetchGoogleReviews();
 });
+
