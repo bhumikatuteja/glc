@@ -109,47 +109,38 @@
             }
         });
 
-        // --- FINAL BULLETPROOF BLOG FETCHER (RSS METHOD) ---
+        // --- FINAL FIXED BLOG FETCHER (WordPress.com Specific) ---
         async function fetchWordPressPosts() {
-            // We use rss2json.com to bypass browser security restrictions
-            const RSS_URL = 'https://growlinkconnect.wordpress.com/feed/';
-            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+            // ✅ We use the v1.1 API which is designed for sites like yours
+            const API_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/growlinkconnect.wordpress.com/posts/?number=3';
             
             const container = document.getElementById('blog-container');
             if (!container) return;
-            
+
             try {
                 const response = await fetch(API_URL);
+                if (!response.ok) throw new Error('API Error');
+                
                 const data = await response.json();
 
-                if (data.status === 'ok' && data.items.length > 0) {
-                    container.innerHTML = '';
+                // WordPress.com API returns an object with a 'posts' array
+                if (data.posts && data.posts.length > 0) {
+                    container.innerHTML = ''; // Clear fallback content only if we have real data
                     
-                    // Take the first 3 posts
-                    data.items.slice(0, 3).forEach(item => {
-                        const title = item.title;
-                        const link = item.link;
+                    data.posts.forEach(post => {
+                        // Data Mapping for WordPress.com v1.1
+                        const title = post.title; 
+                        const link = post.URL;
                         
-                        // Create Excerpt (Strip HTML tags)
-                        const tempDiv = document.createElement("div");
-                        tempDiv.innerHTML = item.description || item.content;
-                        const plainText = tempDiv.textContent || tempDiv.innerText || "";
-                        const excerpt = plainText.substring(0, 100) + '...';
+                        // Clean up excerpt (remove HTML tags)
+                        const div = document.createElement("div");
+                        div.innerHTML = post.excerpt;
+                        const cleanExcerpt = div.textContent || div.innerText || "";
+                        const shortExcerpt = cleanExcerpt.substring(0, 100) + '...';
                         
-                        // Smart Image Finder: 
-                        // 1. Checks 'thumbnail'
-                        // 2. Checks 'enclosure'
-                        // 3. Scans content for <img> tag
-                        let imageUrl = item.thumbnail;
-                        if (!imageUrl && item.enclosure && item.enclosure.link) {
-                            imageUrl = item.enclosure.link;
-                        }
-                        if (!imageUrl) {
-                            const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
-                            if (imgMatch) imageUrl = imgMatch[1];
-                        }
+                        const imageUrl = post.featured_image;
 
-                        // Use the found image or a fallback placeholder
+                        // HTML Template
                         const imageHTML = imageUrl 
                             ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                             : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -163,12 +154,12 @@
                                     <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
                                         <span class="text-coral">Latest</span>
                                         <span>•</span>
-                                        <span class="text-slate-500">${new Date(item.pubDate).toLocaleDateString()}</span>
+                                        <span class="text-slate-500">${new Date(post.date).toLocaleDateString()}</span>
                                     </div>
                                     <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">
                                         <a href="${link}" target="_blank">${title}</a>
                                     </h3>
-                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${excerpt}</div>
+                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${shortExcerpt}</div>
                                     <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">
                                         Read Article <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
                                     </a>
@@ -181,7 +172,7 @@
                     lucide.createIcons();
                 }
             } catch (error) {
-                console.error('RSS Fetch Error:', error);
+                console.error("Blog fetch failed. Keeping static content.", error);
             }
         }
 
