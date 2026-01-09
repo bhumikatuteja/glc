@@ -147,39 +147,63 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// --- WordPress Blog Fetcher Logic ---
-async function fetchWordPressPosts() {
-    // ✅ The correct API URL for your site
-    const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/growlinkconnect.wordpress.com/posts?_embed&per_page=3';
-    
-    const container = document.getElementById('blog-container');
-    if (!container) return;
-    
-    try {
-        console.log("Fetching blogs from:", WP_API_URL);
-
-        const response = await fetch(WP_API_URL);
-        
-        if (!response.ok) {
-            throw new Error(`Failed to fetch posts: ${response.status}`);
-        }
-        
-        const posts = await response.json();
-
-        if (posts.length > 0) {
-            container.innerHTML = '';
-            posts.forEach(post => {
-                const title = post.title.rendered;
-                const link = post.link;
-                // Create a short excerpt (first 100 characters)
-                const excerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+// --- NEW & FIXED WordPress Fetcher (Using v1.1 API) ---
+        async function fetchWordPressPosts() {
+            // This API endpoint is specific to WordPress.com and bypasses most security blocks
+            const WP_API_URL = 'https://public-api.wordpress.com/rest/v1.1/sites/growlinkconnect.wordpress.com/posts/?number=3'; 
+            
+            const container = document.getElementById('blog-container');
+            if (!container) return;
+            
+            try {
+                const response = await fetch(WP_API_URL);
+                if (!response.ok) throw new Error('Failed to fetch posts');
+                const data = await response.json();
                 
-                // Try to get featured image
-                let imageUrl = '';
-                if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
-                    imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
-                }
+                // The v1.1 API returns an object with a 'posts' array
+                if (data.posts && data.posts.length > 0) {
+                    container.innerHTML = '';
+                    
+                    data.posts.forEach(post => {
+                        const title = post.title; // No .rendered needed for v1.1
+                        const link = post.URL;    // Capital URL for v1.1
+                        // Clean up excerpt (remove HTML tags)
+                        const div = document.createElement("div");
+                        div.innerHTML = post.excerpt;
+                        const cleanExcerpt = div.textContent || div.innerText || "";
+                        const shortExcerpt = cleanExcerpt.substring(0, 100) + '...';
+                        
+                        const imageUrl = post.featured_image || '';
 
+                        const imageHTML = imageUrl 
+                            ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
+                            : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
+
+                        const articleHTML = `
+                            <article class="bg-white dark:bg-white/5 rounded-3xl overflow-hidden border border-slate-100 dark:border-white/5 hover:shadow-xl transition-all hover:-translate-y-1 group h-full flex flex-col">
+                                <div class="h-48 bg-slate-200 dark:bg-white/10 relative overflow-hidden">
+                                    ${imageHTML}
+                                </div>
+                                <div class="p-8 flex flex-col flex-grow">
+                                    <div class="flex items-center gap-3 mb-4 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                                        <span class="text-coral">Latest</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 font-display group-hover:text-linkedin transition-colors line-clamp-2">${title}</h3>
+                                    <div class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">${shortExcerpt}</div>
+                                    <a href="${link}" target="_blank" class="inline-flex items-center text-sm font-bold text-linkedin hover:text-coral transition-colors">
+                                        Read Article <i data-lucide="arrow-up-right" class="w-4 h-4 ml-1"></i>
+                                    </a>
+                                </div>
+                            </article>
+                        `;
+                        container.innerHTML += articleHTML;
+                    });
+                    lucide.createIcons();
+                }
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+            }
+        }
                 // Use the fetched image or a fallback placeholder if missing
                 const imageHTML = imageUrl 
                     ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
@@ -306,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWordPressPosts();
     fetchGoogleReviews();
 });
+
 
 
 
