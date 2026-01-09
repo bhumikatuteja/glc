@@ -149,18 +149,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- WordPress Blog Fetcher Logic ---
+// --- WordPress Blog Fetcher Logic ---
 async function fetchWordPressPosts() {
-const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
+    // URL for your WordPress site
+    const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_embed&per_page=3'; 
+    
     const container = document.getElementById('blog-container');
     if (!container) return;
     
     try {
-        if(WP_API_URL.includes('growlinkconnect.wordpress.com')) {
-            console.log('WordPress API URL not configured. Showing static content.');
-            return; 
-        }
+        console.log("Fetching blogs from:", WP_API_URL); // Added for debugging
+
         const response = await fetch(WP_API_URL);
-        if (!response.ok) throw new Error('Failed to fetch posts');
+        
+        if (!response.ok) {
+            throw new Error(`Failed to fetch posts: ${response.status}`);
+        }
+        
         const posts = await response.json();
 
         if (posts.length > 0) {
@@ -169,10 +174,12 @@ const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_e
                 const title = post.title.rendered;
                 const link = post.link;
                 const excerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+                
                 let imageUrl = '';
                 if (post._embedded && post._embedded['wp:featuredmedia'] && post._embedded['wp:featuredmedia'][0]) {
                     imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
                 }
+
                 const imageHTML = imageUrl 
                     ? `<img src="${imageUrl}" alt="${title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">`
                     : `<div class="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-200 dark:bg-white/10"><i data-lucide="image" class="w-8 h-8"></i></div>`;
@@ -195,6 +202,8 @@ const WP_API_URL = 'https://growlinkconnect.wordpress.com/wp-json/wp/v2/posts?_e
                 container.innerHTML += articleHTML;
             });
             lucide.createIcons();
+        } else {
+            console.log("No posts found on the blog.");
         }
     } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -294,4 +303,5 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchWordPressPosts();
     fetchGoogleReviews();
 });
+
 
